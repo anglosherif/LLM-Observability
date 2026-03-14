@@ -32,8 +32,6 @@ Visualizes metrics in Grafana Cloud dashboards
 
 Sends alerts for high latency or errors
 
-Optionally collects logs for debugging slow requests
-
 It’s designed to mirror production-level observability for AI services.
 
 
@@ -61,6 +59,10 @@ Grafana Cloud account (hosted Prometheus + Loki)
 curl or Postman (for testing API)
 
 # Installation
+
+install Prometheus from this link https://prometheus.io/download/
+
+install Ollama from this link https://ollama.com/download/windows
 
 Install Python dependencies:
 ```bash
@@ -133,3 +135,30 @@ Example panels:
 
 
 
+# Alerts
+
+Example alert rules:
+
+High Latency: P95 latency > 9s
+
+Notifications can be sent via email, Slack, Discord, or other Grafana Cloud contact points. Alerts automatically resolve when conditions normalize.
+
+
+# Project Architecture
+
+Flask API (localhost)
+      ↓
+Metrics → Prometheus → Grafana Cloud Dashboards
+
+Alerts → Grafana Cloud → Notifications (Email/Slack/etc)
+
+
+# Conclusion
+
+This project demonstrates end-to-end observability for a local LLM API, including:
+
+Metrics collection and dashboards
+
+Alerts with email notifications
+
+It mirrors a production-grade LLM monitoring setup, giving insights into request volume, latency, errors, and token usage.
